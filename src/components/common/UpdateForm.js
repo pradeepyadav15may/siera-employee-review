@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import { Field, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function UpdateForm({ location, employeesList }) {
@@ -91,11 +91,6 @@ export function UpdateForm({ location, employeesList }) {
 						employeesList.map((emp, index) => <option key={index} value={emp.empName}>emp.empName</option>)
 					}
 				</select>
-				<Field as="select" name="assignedEmp">
-					{
-						employeesList.map((emp, index) => <option key={index} value={emp._id}>emp.empName</option>)
-					}
-				</Field>
 			</div>
 
 			<div className="form-field submit">

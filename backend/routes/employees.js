@@ -35,6 +35,12 @@ router.route('/:id').get((req, res) => {
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/delete/:id').get((req, res) => {
+	Employee.findByIdAndRemove(req.params.id)
+		.then(() => res.json('Employee Deleted Successfully !!!!'))
+		.catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/update/:id').post((req, res) => {
 	if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
 		const empFromDB = Employee.findById(req.params.id);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Admin.css';
@@ -13,10 +13,19 @@ export class Admin extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = Admin.initialState;
+		this.handleRemove = this.handleRemove.bind(this);
 	}
 
 	componentDidMount() {
 		this.loadEmployees();
+	}
+
+	handleRemove(e) {
+		const target = e.currentTarget;
+		const documentId = target.getAttribute('data-documentid');
+		console.log(e);
+		axios.get(`http://localhost:5000/employees/delete/${documentId}`, null)
+				.then(this.loadEmployees())
 	}
 
 	loadEmployees = () => {
@@ -46,6 +55,7 @@ export class Admin extends React.PureComponent {
 					<td><span className="emp-details">{emp.empPerformance}</span></td>
 					<td><span className="emp-details">{emp.assignedEmp.join(',')}</span></td>
 					<td><Link className="emp-details" to={toUpdateEmployee}>Update</Link></td>
+					<td><button className="emp-details" onClick={this.handleRemove} data-documentid={emp._id}>Delete</button></td>
 				</tr>
 			);
 		});
@@ -81,4 +91,4 @@ export class Admin extends React.PureComponent {
 	}
 }
 
-export default Admin;
+export default withRouter(Admin);
