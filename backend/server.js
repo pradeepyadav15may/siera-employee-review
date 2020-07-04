@@ -1,0 +1,29 @@
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+
+// to have ENV Variables in .env file
+require('dotenv').config();
+
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.use(cors());
+app.use(express.json());
+
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, {
+	useNewUrlParser: true,
+	useCreateIndex: true
+});
+const connection = mongoose.connection;
+connection.once('open', () => {
+	console.log(`Pradeep's Mongo DB connection established successfully !!!!`);
+});
+
+const employeesRouter = require('./routes/employees');
+app.use('/employees', employeesRouter);
+
+app.listen(port, () => {
+	console.log(`Pradeep's Server is running on the port: ${port} !!!!`);
+});
