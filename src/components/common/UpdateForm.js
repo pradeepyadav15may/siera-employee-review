@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useFormik } from 'formik';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function UpdateForm({ location, employeesList }) {
+export function UpdateForm({ location }) {
 	let history = useHistory();
 	const [employee, setEmployee] = useState({
 		empName: '',
@@ -15,11 +15,15 @@ export function UpdateForm({ location, employeesList }) {
 		assignedEmp: []
 	});
 	const employeeId = location.param1;
+	const { employeesList } = location;
 
 	useEffect(() => {
-		async function fetchEmployee() {
-			await axios.get(`http://localhost:5000/employees/${employeeId}`, null)
-			.then(res => setEmployee(res.data))
+		function fetchEmployee() {
+			const emp = employeesList.filter((tmpEmployee) => {
+				return tmpEmployee._id === employeeId;
+			});
+			console.log(emp[0]);
+			setEmployee({ ...emp[0] })
 		};
 
 		fetchEmployee();
@@ -27,12 +31,13 @@ export function UpdateForm({ location, employeesList }) {
 
 	const formik = useFormik({
 		initialValues: employee,
+		enableReinitialize: true,
 		onSubmit: values => {
 			axios.post(`http://localhost:5000/employees/update/${employeeId}`, values)
 				.then(() => history.push('/'))
 		},
 	});
-
+	console.log(formik);
 	return (
 		<React.Fragment>
 		<form onSubmit={formik.handleSubmit}>
@@ -43,8 +48,8 @@ export function UpdateForm({ location, employeesList }) {
 					name="empId"
 					type="text"
 					onChange={formik.handleChange}
-					placeholder="Enter Unique ID"
 					value={formik.values.empId}
+					disabled={true}
 				/>
 			</div>
 
@@ -56,6 +61,7 @@ export function UpdateForm({ location, employeesList }) {
 					type="text"
 					onChange={formik.handleChange}
 					value={formik.values.empName}
+					disabled={true}
 				/>
 			</div>
 
@@ -86,9 +92,10 @@ export function UpdateForm({ location, employeesList }) {
 					name="assignedEmp"
 					value={formik.values.assignedEmp}
 					onChange={formik.handleChange}
+					multiple={true}
 				>
 					{
-						employeesList.map((emp, index) => <option key={index} value={emp.empName}>emp.empName</option>)
+						employeesList.filter((emp1) => emp1._id != employeeId).map((emp, index) => <option key={index} value={emp.empName}>{emp.empName}</option>)
 					}
 				</select>
 			</div>
@@ -103,12 +110,10 @@ export function UpdateForm({ location, employeesList }) {
 
 UpdateForm.propTypes = {
 	location: PropTypes.object,
-	employeesList: PropTypes.array,
 };
 
 UpdateForm.defaultProps = {
 	location: {},
-	employeesList: [],
 };
 
 export default UpdateForm;

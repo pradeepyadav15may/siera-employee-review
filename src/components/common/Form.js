@@ -11,7 +11,7 @@ export function Form() {
 		empName: '',
 		empId: '',
 		empType: 'non-admin',
-		empPerformance: 'Good',
+		empPerformance: '',
 		assignedEmp: []
 	};
 
