@@ -13,8 +13,8 @@ function App() {
 		<div className="container">
 		<Router>
 			<MyNavbar />
-			<Route path="/" exact component={Admin} />
-			<Route path="/create" exact component={Form} />
+			<Route path="/admin" exact component={Admin} />
+			<Route path="/create" component={Form} />
 			<Route path="/employee" component={Employee} />
 			<Route path="/update" component={UpdateForm} />
 		</Router>

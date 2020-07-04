@@ -5,11 +5,12 @@ import { useFormik } from 'formik';
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function Form() {
+export function Form({ location }) {
 	let history = useHistory();
+	const { employeesList } = location;
 	const initialState = {
 		empName: '',
-		empId: '',
+		empId: ++employeesList.length,
 		empType: 'non-admin',
 		empPerformance: '',
 		assignedEmp: []

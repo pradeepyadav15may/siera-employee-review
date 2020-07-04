@@ -68,7 +68,7 @@ export class Admin extends React.PureComponent {
 						<th>Employee Name</th>
 						<th>Employee Type</th>
 						<th>Employee Performance</th>
-						<th>Assigned Employees</th>
+						<th>Assigned Employees for Review</th>
 						<th>Update Employee</th>
 					</tr>
 				</thead>
@@ -80,9 +80,14 @@ export class Admin extends React.PureComponent {
 	}
 
 	render() {
+		const { employeesList } = this.state;
+		const toUpdateEmployee = {
+			pathname: "/create",
+			employeesList,
+		};
 		return (
 			<div className={rootClass}>
-				<Link to="/create" className="btn btn-primary">Add New Employee</Link>
+				<Link to={toUpdateEmployee} className="btn btn-primary">Add New Employee</Link>
 				<div className="employees-list">
 					{this.renderAllEmployees()}
 				</div>

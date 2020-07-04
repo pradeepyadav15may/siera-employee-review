@@ -37,7 +37,6 @@ export function UpdateForm({ location }) {
 				.then(() => history.push('/'))
 		},
 	});
-	console.log(formik);
 	return (
 		<React.Fragment>
 		<form onSubmit={formik.handleSubmit}>
