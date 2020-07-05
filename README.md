@@ -22,20 +22,23 @@ You have node, npm installed in your machine.
 
 5- I have added some employees during testing. You can test by adding new employees through admin panel.
 
-**Admin Dashboard**
+
+## Adding screenshots below for reference purpose
+
+**Admin Dashboard -**
 
 ![alt text](https://github.com/pradeepyadav15may/siera-employee-review/blob/master/admin_dashboard.png)
 
-**Admin Adding Employee**
+**Admin Adding Employee -**
 
 ![alt text](https://github.com/pradeepyadav15may/siera-employee-review/blob/master/admin_AddineEmployee.png)
 
 
-**Admin Updating Employee**
+**Admin Updating Employee -**
 
 ![alt text](https://github.com/pradeepyadav15may/siera-employee-review/blob/master/admin_UpdatingEmployee.png)
 
 
-**Employee Dashboard**
+**Employee Dashboard -**
 
 ![alt text](https://github.com/pradeepyadav15may/siera-employee-review/blob/master/employee_dashboard.png)
