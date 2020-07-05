@@ -11,13 +11,13 @@ import './App.css';
 function App() {
 	return (
 		<div className="container">
-		<Router>
-			<MyNavbar />
-			<Route path="/admin" exact component={Admin} />
-			<Route path="/create" component={Form} />
-			<Route path="/employee" component={Employee} />
-			<Route path="/update" component={UpdateForm} />
-		</Router>
+			<Router>
+				<MyNavbar />
+				<Route path="/admin" exact component={Admin} />
+				<Route path="/create" component={Form} />
+				<Route path="/employee" component={Employee} />
+				<Route path="/update" component={UpdateForm} />
+			</Router>
 		</div>
 	);
 }

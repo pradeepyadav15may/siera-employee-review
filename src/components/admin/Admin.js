@@ -23,7 +23,6 @@ export class Admin extends React.PureComponent {
 	handleRemove(e) {
 		const target = e.currentTarget;
 		const documentId = target.getAttribute('data-documentid');
-		console.log(e);
 		axios.get(`http://localhost:5000/employees/delete/${documentId}`, null)
 				.then(this.loadEmployees())
 	}
@@ -34,7 +33,6 @@ export class Admin extends React.PureComponent {
 					this.setState({
 						employeesList: res.data,
 					});
-					console.log(res.data)
 				})
 	}
 

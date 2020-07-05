@@ -5,9 +5,12 @@ import './MyNavbar.css';
 
 export class MyNavbar extends React.Component {
 	render() {
+		const currentPath = window.location.pathname;
+		const redirectUrl = (currentPath === '/admin') ? '/admin' : '/employee';
+
 		return (
 			<Navbar bg="light" expand="lg">
-				<Navbar.Brand href="/admin">Dashboard</Navbar.Brand>
+				<Navbar.Brand href={redirectUrl}>Dashboard</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			</Navbar>
 		);

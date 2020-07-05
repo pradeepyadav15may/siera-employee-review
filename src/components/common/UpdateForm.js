@@ -27,14 +27,14 @@ export function UpdateForm({ location }) {
 		};
 
 		fetchEmployee();
-	}, [employeeId]);
+	}, [employeesList, employeeId]);
 
 	const formik = useFormik({
 		initialValues: employee,
 		enableReinitialize: true,
 		onSubmit: values => {
 			axios.post(`http://localhost:5000/employees/update/${employeeId}`, values)
-				.then(() => history.push('/'))
+				.then(() => history.push('/admin'))
 		},
 	});
 	return (
@@ -94,7 +94,7 @@ export function UpdateForm({ location }) {
 					multiple={true}
 				>
 					{
-						employeesList.filter((emp1) => emp1._id != employeeId).map((emp, index) => <option key={index} value={emp.empName}>{emp.empName}</option>)
+						employeesList.filter((emp1) => emp1._id !== employeeId).map((emp, index) => <option key={index} value={emp.empName}>{emp.empName}</option>)
 					}
 				</select>
 			</div>

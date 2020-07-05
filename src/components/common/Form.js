@@ -20,7 +20,7 @@ export function Form({ location }) {
 		initialValues: initialState,
 		onSubmit: values => {
 			axios.post('http://localhost:5000/employees/add', values)
-				.then(res => history.push('/'))
+				.then(res => history.push('/admin'))
 		},
 	});
 
